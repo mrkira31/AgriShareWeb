@@ -126,9 +126,16 @@ p{color:var(--muted)}
 .footer-top nav a{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:750;color:var(--forest)}
 .footer-top nav a:hover{text-decoration:underline}
 .footer-bottom{border-top:1px solid #dce5da;margin-top:24px;padding-top:13px;color:var(--muted);font-size:11px}
-.page-hero{padding:48px 0 42px;background:linear-gradient(110deg,#e5efe4,#f4f5ed);border-bottom:1px solid var(--line)}
-.page-hero h1,.detail-heading h1{font-size:clamp(39px,6vw,65px)}
-.page-hero p{max-width:650px;margin-top:12px}
+.page-hero{padding:48px 0 42px;position:relative;isolation:isolate;overflow:hidden;background:#153f2b;border-bottom:1px solid var(--line)}
+.page-hero-image{object-fit:cover;object-position:center 53%;z-index:-2}
+.page-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0d271af0 0%,#102b1cdd 36%,#102b1c8c 76%,#102b1c66 100%)}
+.page-hero h1{color:#fff;font-size:clamp(39px,6vw,65px)}
+.page-hero p{max-width:650px;margin-top:12px;color:#f5f8ef}
+.page-hero .eyebrow,.page-hero .gold{color:#f3cb7d}
+.page-hero .back-link{display:flex;width:fit-content;margin-bottom:14px;color:#f5f8ef}
+.listing-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.listing-meta .gold{margin-left:10px}
+@media(max-width:700px){.page-hero::before{background:linear-gradient(90deg,#0d271aed,#102b1cbb)}}
 .page-section{padding-block:35px 57px;min-height:310px}
 .filter-panel{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:13px;padding:16px;background:white;border:1px solid var(--line);border-radius:13px}
 .filter-panel label,.field{display:grid;gap:5px;color:var(--forest);font-size:13px;font-weight:800;min-width:0}
@@ -139,10 +146,7 @@ p{color:var(--muted)}
 .empty>svg{margin:0 auto 12px;color:var(--leaf)}
 .empty p{margin:9px 0 17px}
 .detail-page{padding-block:26px 55px}
-.detail-heading{margin:17px 0 21px}
-.detail-heading h1{margin:5px 0 9px}
-.detail-heading p,.booking-panel h2,.request-card p{display:flex;align-items:center;gap:7px}
-.detail-heading p .gold{margin-left:10px}
+.booking-panel h2,.request-card p{display:flex;align-items:center;gap:7px}
 .detail-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
 .gallery{position:relative;aspect-ratio:1.55;overflow:hidden;border-radius:15px;background:#e5eee0}
 .gallery button,.gallery-counter{position:absolute;border:0;background:white;color:var(--forest);border-radius:8px;padding:8px}

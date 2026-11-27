@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHero } from "./page-hero";
 import { ArrowLeft, ArrowRight, CalendarDays, Check, ChevronLeft, ChevronRight, MapPin, ShieldCheck, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,10 +32,11 @@ export function Equipment({ item }: { item: Listing }) {
   const blocked = !!from && !!to && bookingConflict(bookings, item.id, from, to);
   const farmer = profile?.role === "Farmer";
   const storage = item.category === "Cold Storage";
-  return <div className="wrap detail-page">
-    <Link className="text-link back-link" href={storage ? "/storage" : "/explore"}><ArrowLeft size={16}/> Back to {storage ? "cold storage" : "marketplace"}</Link>
-    <div className="detail-heading"><span className="eyebrow"><span/> {item.category.toUpperCase()}</span><h1>{item.name}</h1><p><MapPin size={17}/>{item.place}, Sicily <Star size={17} className="gold"/> {item.rating} ({item.reviews} demo reviews)</p></div>
-    <div className="detail-grid">
+  return <>
+    <PageHero image={item.image} label={item.category.toUpperCase()} title={item.name}
+      navigation={<Link className="text-link back-link" href={storage ? "/storage" : "/explore"}><ArrowLeft size={16}/> Back to {storage ? "cold storage" : "marketplace"}</Link>}
+      description={<span className="listing-meta"><MapPin size={17}/>{item.place}, Sicily <Star size={17} className="gold"/> {item.rating} ({item.reviews} demo reviews)</span>}/>
+    <div className="wrap detail-page detail-grid">
       <div>
         <div className="gallery">
           <Image src={"/images/" + item.image + (photo ? "-detail" : "") + ".webp"} alt={item.name + (photo ? " detail view" : " overview")} fill priority sizes="(max-width: 850px) 100vw, 700px"/>
@@ -74,5 +76,5 @@ export function Equipment({ item }: { item: Listing }) {
         </form>
       </aside>
     </div>
-  </div>;
+  </>;
 }

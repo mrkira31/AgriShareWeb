@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHero } from "./page-hero";
 import { ArrowRight, CalendarDays, Inbox, LogOut, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,8 @@ export function Dashboard({ requested }: { requested?: Role }) {
     router.push("/dashboard/" + next.toLowerCase());
   };
   return <>
-    <div className="page-hero"><div className="wrap"><span className="eyebrow"><span/> DEMO WORKSPACE</span><h1>{role} dashboard</h1><p>{owner ? "Review rental requests across the demo listings." : "Track your booking requests and saved listings."}</p></div></div>
+    <PageHero image={owner ? "tractor" : "vineyard"} label="DEMO WORKSPACE" title={role + " dashboard"}
+      description={owner ? "Review rental requests across the demo listings." : "Track your booking requests and saved listings."}/>
     <div className="wrap page-section">
     {profile?.role !== role ? <div className="empty"><Inbox size={30}/><h2>Continue as {role === "Owner" ? "an Owner" : "a Farmer"}</h2><p>Open this workspace using the matching demo profile.</p><Button asChild><Link href={"/login?role=" + role + "&next=/dashboard/farmer"}>Open demo access <ArrowRight size={17}/></Link></Button></div> : <>
       <div className="dashboard-tools"><h2>Hello, {profile.name}</h2><div className="actions"><Button variant="outline" onClick={switchRole}><RefreshCw size={16}/> Switch to {owner ? "Farmer" : "Owner"}</Button><Button variant="outline" onClick={() => { signIn(null); router.push("/login"); }}><LogOut size={16}/> Log out</Button></div></div>
