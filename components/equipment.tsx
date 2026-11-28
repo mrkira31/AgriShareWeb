@@ -33,7 +33,7 @@ export function Equipment({ item }: { item: Listing }) {
   const farmer = profile?.role === "Farmer";
   const storage = item.category === "Cold Storage";
   return <>
-    <PageHero image={item.image} label={item.category.toUpperCase()} title={item.name}
+    <PageHero image={item.id} label={item.category.toUpperCase()} title={item.name}
       navigation={<Link className="text-link back-link" href={storage ? "/storage" : "/explore"}><ArrowLeft size={16}/> Back to {storage ? "cold storage" : "marketplace"}</Link>}
       description={<span className="listing-meta"><MapPin size={17}/>{item.place}, Sicily <Star size={17} className="gold"/> {item.rating} ({item.reviews} demo reviews)</span>}/>
     <div className="wrap detail-page detail-grid">

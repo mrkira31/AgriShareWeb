@@ -24,7 +24,7 @@ export function Dashboard({ requested }: { requested?: Role }) {
     router.push("/dashboard/" + next.toLowerCase());
   };
   return <>
-    <PageHero image={owner ? "tractor" : "vineyard"} label="DEMO WORKSPACE" title={role + " dashboard"}
+    <PageHero image={owner ? "owner" : "farmer"} label="DEMO WORKSPACE" title={role + " dashboard"}
       description={owner ? "Review rental requests across the demo listings." : "Track your booking requests and saved listings."}/>
     <div className="wrap page-section">
     {profile?.role !== role ? <div className="empty"><Inbox size={30}/><h2>Continue as {role === "Owner" ? "an Owner" : "a Farmer"}</h2><p>Open this workspace using the matching demo profile.</p><Button asChild><Link href={"/login?role=" + role + "&next=/dashboard/farmer"}>Open demo access <ArrowRight size={17}/></Link></Button></div> : <>

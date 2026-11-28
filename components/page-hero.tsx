@@ -9,7 +9,7 @@ export function PageHero({ image, label, title, description, navigation }: {
   navigation?: ReactNode;
 }) {
   return <section className="page-hero">
-    <Image className="page-hero-image" src={`/images/${image}.webp`} alt="" fill sizes="100vw" preload/>
+    <Image className="page-hero-image" src={`/images/banners/${image}.webp`} alt="" fill sizes="100vw" preload/>
     <div className="wrap">
       {navigation}
       {label && <span className="eyebrow"><span/> {label}</span>}

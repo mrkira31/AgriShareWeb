@@ -18,15 +18,6 @@ export const pages = {
   register: ["Create a demo profile", "", ""],
   dashboard: ["Dashboard", "", ""],
 } as const;
-const bannerImages = {
-  explore: "combine",
-  storage: "cold",
-  impact: "hero",
-  about: "vineyard",
-  "how-it-works": "tractor",
-  demo: "excavator",
-};
-
 export type SectionSearch = Promise<Record<string, string | string[] | undefined>>;
 export async function SectionPage({ section, searchParams }: { section: keyof typeof pages; searchParams?: SectionSearch }) {
   const search = (await searchParams) ?? {};
@@ -38,7 +29,7 @@ export async function SectionPage({ section, searchParams }: { section: keyof ty
   }
   if (section === "dashboard") return <Dashboard/>;
   const [title, label, description] = pages[section];
-  return <><PageHero image={bannerImages[section]} label={label} title={title} description={description}/>
+  return <><PageHero image={section} label={label} title={title} description={description}/>
     {(section === "explore" || section === "storage") && <Market key={JSON.stringify([section, get("q"), get("province"), get("category")])} storage={section === "storage"} query={get("q")} initialProvince={get("province")} initialCategory={section === "storage" ? "" : get("category")}/>}
     {section === "demo" && <GuidedDemo/>}
     {section === "impact" && <Impact/>}
