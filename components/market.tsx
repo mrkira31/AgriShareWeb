@@ -39,6 +39,10 @@ export function HomeSearch() {
     <Button className="search-submit"><Search size={17}/> Search</Button>
   </form>;
 }
+function normalizeSearch(text: string) {
+  return text.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+}
+
 export function Market({ storage, query, initialProvince, initialCategory }: { storage: boolean; query: string; initialProvince: string; initialCategory: string }) {
   const [q, setQ] = useState(query);
   const [province, setProvince] = useState(initialProvince);
@@ -46,10 +50,11 @@ export function Market({ storage, query, initialProvince, initialCategory }: { s
   const [sort, setSort] = useState("featured");
   const [onlySaved, setOnlySaved] = useState(false);
   const { saved } = useDemo();
+  const words = normalizeSearch(q.trim()).split(/\s+/);
   const results = listings.filter(item =>
     (!storage || item.category === "Cold Storage") && (!category || item.category === category) &&
     (!province || item.province === province) && (!onlySaved || saved.includes(item.id)) &&
-    q.trim().toLowerCase().split(/\s+/).every(word => [item.name, item.place, item.province, item.category, item.description, ...item.specs].join(" ").toLowerCase().includes(word))
+    words.every(word => normalizeSearch([item.name, item.place, item.province, item.category, item.description, ...item.specs].join(" ")).includes(word))
   );
   if (sort === "low") results.sort((a, b) => a.rate - b.rate);
   if (sort === "high") results.sort((a, b) => b.rate - a.rate);
