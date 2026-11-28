@@ -7,8 +7,8 @@ export function PageHero({ image, label, title, description }: {
   label?: string;
   description?: ReactNode;
 }) {
-  return <section className="page-hero">
-    <Image className="page-hero-image" src={`/images/banners/${image}.webp`} alt="" fill sizes="100vw" preload/>
+  return <section className="page-hero" data-banner={image}>
+    <Image className="page-hero-image" src={`/images/banners/${image}.webp`} alt="" fill sizes="100vw" quality={90} preload/>
     <div className="wrap">
       {label && <span className="eyebrow"><span/> {label}</span>}
       <h1>{title}</h1>

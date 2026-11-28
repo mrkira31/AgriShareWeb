@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Tractor, Warehouse } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,7 +15,10 @@ export function Auth({ register, next, initialRole }: { register: boolean; next:
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   return <div className="wrap auth-layout">
-    <div className={register ? "auth-visual auth-register" : "auth-visual"}><div><span className="hero-kicker">THE SICILIAN FARMING MARKETPLACE</span><h1>Grow with your local farming community.</h1><p>Find equipment and storage nearby, or put your spare capacity to work.</p></div></div>
+    <div className="auth-visual">
+      <Image className="auth-visual-image" src={register ? "/images/banners/register.webp" : "/images/banners/login.webp"}
+        alt="" fill sizes="(max-width: 580px) 100vw, 850px" quality={90} preload/>
+      <div><span className="hero-kicker">THE SICILIAN FARMING MARKETPLACE</span><h1>Grow with your local farming community.</h1><p>Find equipment and storage nearby, or put your spare capacity to work.</p></div></div>
     <section className="auth-form">
       <span className="eyebrow"><span/> DEMO ACCESS</span><h2>{register ? "Create your demo profile" : "Welcome back"}</h2><p>{register ? "Choose a role to get started." : "Choose a role to continue into the demo."} Your profile stays in this browser.</p>
       <form onSubmit={e => {
